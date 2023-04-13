@@ -1,5 +1,8 @@
 # node
-node_modules
+/node_modules
 
 # yarn
-yarn-error.log
+/yarn-error.log
+
+# tests/jest
+/coverage
