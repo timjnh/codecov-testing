@@ -1,6 +1,9 @@
 name: Build
 on:
-  - pull_request
+  push:
+    branches:
+    - master
+  pull_request:
 
 env:
   CODECOV_TOKEN: c8289e61-4885-4fd7-ba84-cd6c43433883
