@@ -5,7 +5,7 @@ on:
 env:
   CC_TEST_REPORTER_ID: 7a37094861415483c9af21a491fa4cb96b330bca7e8d0728a883504471696ab4
   GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }} # for code climate
-  GIT_BRANCH: ${{ github.ref }} # for code climate
+  GIT_BRANCH: ${{ github.event.pull_request.head.ref }} # for code climate
 
 jobs:
   test:
