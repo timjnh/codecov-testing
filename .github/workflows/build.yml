@@ -3,9 +3,7 @@ on:
   - pull_request
 
 env:
-  CC_TEST_REPORTER_ID: 7a37094861415483c9af21a491fa4cb96b330bca7e8d0728a883504471696ab4
-  GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }} # for code climate
-  GIT_BRANCH: ${{ github.event.pull_request.head.ref }} # for code climate
+  CODECOV_TOKEN: c8289e61-4885-4fd7-ba84-cd6c43433883
 
 jobs:
   test:
@@ -16,15 +14,6 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: yarn install --immutable --immutable-cache --check-cache
-      - name: Setup Code Climate
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
       - id: test
         run: yarn test
-      - name: Push Code Climate results
-        if: ${{ always() }}
-        run: |
-          RESULT=$( [ "${{ steps.test.outcome }}" = "success" ] && echo "0" || echo "1" )
-          ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $RESULT
+      - uses: codecov/codecov-action@v3
