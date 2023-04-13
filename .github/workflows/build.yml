@@ -1,8 +1,12 @@
 name: Build
-on: [push]
+on:
+  - push
+  - pull_request
 
 env:
   CC_TEST_REPORTER_ID: 7a37094861415483c9af21a491fa4cb96b330bca7e8d0728a883504471696ab4
+  GIT_COMMIT_SHA: ${{ env.GITHUB_SHA }} # for code climate
+  GIT_BRANCH: ${{ env.GITHUB_REF_NAME }} # for code climate
 
 jobs:
   test:
@@ -17,11 +21,11 @@ jobs:
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
+          ./cc-test-reporter before-build --debug
       - id: test
         run: yarn test
       - name: Push Code Climate results
         if: ${{ always() }}
         run: |
           RESULT=$( [ "${{ steps.test.outcome }}" = "success" ] && echo "0" || echo "1" )
-          ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $RESULT
+          ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $RESULT --debug
