@@ -23,5 +23,5 @@ jobs:
       - name: Push Code Climate results
         if: ${{ always() }}
         run: |
-          echo "Outcome ${{ steps.test.outcome }}"
-          ./cc-test-reporter after-build --exit-code ${{ steps.test.outcome }}
+          RESULT=$( [ "${{ steps.test.outcome }}" = "success" ] && echo "0" || echo "1" )
+          ./cc-test-reporter after-build --exit-code $RESULT
