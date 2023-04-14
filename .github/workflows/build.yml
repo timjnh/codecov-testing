@@ -5,9 +5,6 @@ on:
       - main
   pull_request:
 
-env:
-  CODECOV_TOKEN: c8289e61-4885-4fd7-ba84-cd6c43433883
-
 jobs:
   test:
     runs-on: ubuntu-latest
