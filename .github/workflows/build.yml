@@ -16,4 +16,7 @@ jobs:
       - run: yarn install --immutable --immutable-cache --check-cache
       - id: test
         run: yarn test
-      - uses: coverallsapp/github-action@v1
+      - uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./coverage
