@@ -17,6 +17,3 @@ jobs:
       - id: test
         run: yarn test
       - uses: coverallsapp/github-action@v1
-        with:
-          git-branch: ${{ github.event.pull_request.head.ref }}
-          git-commit: ${{ github.event.pull_request.head.sha }}
