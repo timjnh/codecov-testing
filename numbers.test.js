@@ -5,3 +5,9 @@ describe('addNumbers', () => {
     expect(addNumbers(1, 2)).toBe(3);
   });
 });
+
+describe('multiplyNumbers', () => {
+  test("it should multiply two numbers", () => {
+    expect(multiplyNumbers(2, 3)).toBe(6);
+  });
+});
