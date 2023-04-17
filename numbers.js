@@ -9,3 +9,7 @@ export function subtractNumbers(a, b) {
 export function multiplyNumbers(a, b) {
   return a * b;
 }
+
+export function divideNumbers(a, b) {
+  return a / b;
+}
