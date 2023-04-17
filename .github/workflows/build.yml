@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  CODECOV_TOKEN: ${ secrets.CODECOV_TOKEN }
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 jobs:
   test:
